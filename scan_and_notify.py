@@ -223,4 +223,146 @@ def chunk_lines(header, lines, max_len=MAX_MSG_LEN):
 def send_telegram(message):
     token = os.environ["TELEGRAM_BOT_TOKEN"]
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
-    url = f"https://api.telegram.org/bo
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    resp = requests.post(url, data={
+        "chat_id": chat_id, "text": message, "parse_mode": "Markdown",
+        "disable_web_page_preview": True,
+    }, timeout=15)
+    if not resp.ok:
+        print(f"Telegram gönderim hatası: {resp.status_code} {resp.text}", file=sys.stderr)
+        resp.raise_for_status()
+
+
+def send_telegram_photo(photo_bytes, caption):
+    token = os.environ["TELEGRAM_BOT_TOKEN"]
+    chat_id = os.environ["TELEGRAM_CHAT_ID"]
+    url = f"https://api.telegram.org/bot{token}/sendPhoto"
+    resp = requests.post(
+        url,
+        data={"chat_id": chat_id, "caption": caption, "parse_mode": "Markdown"},
+        files={"photo": ("chart.png", photo_bytes, "image/png")},
+        timeout=30,
+    )
+    if not resp.ok:
+        print(f"Telegram foto gönderim hatası: {resp.status_code} {resp.text}", file=sys.stderr)
+        resp.raise_for_status()
+
+
+def fetch_ohlc_batch(symbols, interval, period):
+    if not symbols:
+        return {}
+    symbols = list(symbols)
+    yf_tickers = [s + ".IS" for s in symbols]
+    raw = yf.download(tickers=yf_tickers, period=period, interval=interval,
+                       group_by="ticker", threads=True, progress=False, auto_adjust=False)
+    out = {}
+    if len(symbols) == 1:
+        df = raw.dropna(how="all")
+        if len(df) >= 5:
+            out[symbols[0]] = df
+        return out
+    for s, yf_t in zip(symbols, yf_tickers):
+        try:
+            df = raw[yf_t].dropna(how="all")
+            if len(df) >= 5:
+                out[s] = df
+        except Exception:
+            continue
+    return out
+
+
+def render_highlight_chart(symbol, df, label, tf_label, n_candles, lookback=CHART_LOOKBACK):
+    sub = df.iloc[-lookback:].copy()
+    n_candles = min(n_candles, len(sub))
+    mc = mpf.make_marketcolors(up=GREEN, down=RED, edge="inherit", wick="inherit", volume="inherit")
+    style = mpf.make_mpf_style(base_mpf_style="nightclouds", marketcolors=mc,
+                                facecolor=BG, edgecolor=GRID, figcolor=BG,
+                                gridcolor=GRID, gridstyle="--",
+                                rc={"font.size": 9, "text.color": FG,
+                                    "axes.labelcolor": FG, "xtick.color": FG, "ytick.color": FG})
+    fig, axes = mpf.plot(sub, type="candle", style=style, volume=True, returnfig=True,
+                          figsize=(9, 5.5), tight_layout=True,
+                          title=f"\n{symbol} — {label} ({tf_label})")
+    ax = axes[0]
+    highlight_start = len(sub) - n_candles
+    ax.axvspan(highlight_start - 0.5, len(sub) - 1 + 0.5, color=ACCENT, alpha=0.18, zorder=0)
+    ax.annotate(label, (len(sub) - 1, sub["High"].iloc[-n_candles:].max()),
+                textcoords="offset points", xytext=(0, 14), color=ACCENT,
+                fontsize=9, ha="center", annotation_clip=False)
+
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", dpi=140, facecolor=BG, bbox_inches="tight")
+    plt.close(fig)
+    buf.seek(0)
+    return buf.getvalue()
+
+
+def send_image_signals(image_signals):
+    for tf_label, signals in image_signals.items():
+        if not signals:
+            continue
+        symbols = {s["symbol"] for s in signals}
+        try:
+            ohlc = fetch_ohlc_batch(symbols, YF_INTERVAL[tf_label], YF_PERIOD[tf_label])
+        except Exception as e:
+            print(f"{tf_label} OHLC verisi alınamadı: {e}", file=sys.stderr)
+            ohlc = {}
+
+        for sig in signals:
+            df = ohlc.get(sig["symbol"])
+            caption = (f"*{sig['symbol']}* — {sig['close']} TL ({sig['change_str']})\n"
+                       f"{sig['icon']} {sig['label']}\n"
+                       f"[Grafiği Aç]({sig['link']})")
+            if df is None or len(df) < 5:
+                try:
+                    send_telegram(f"*BIST30 Mum Formasyonu Taraması — {tf_label}*\n\n{caption}")
+                    print(f"{sig['symbol']} — {sig['label']} ({tf_label}): OHLC alınamadı, metin olarak gönderildi.")
+                except Exception as e:
+                    print(f"{sig['symbol']} gönderilemedi: {e}", file=sys.stderr)
+                continue
+
+            try:
+                png = render_highlight_chart(sig["symbol"], df, sig["label"], tf_label, sig["n_candles"])
+                send_telegram_photo(png, caption)
+                print(f"{sig['symbol']} — {sig['label']} ({tf_label}): grafik gönderildi.")
+            except Exception as e:
+                print(f"{sig['symbol']} grafik gönderilemedi: {e}", file=sys.stderr)
+
+
+def main():
+    state = load_state()
+    already_sent = set(state.get("sent", []))
+
+    try:
+        data = fetch_scan()
+    except Exception as e:
+        print(f"Scanner sorgu hatası: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    text_signals, image_signals, newly_sent_keys = collect_signals(data, already_sent)
+
+    any_sent = False
+    for tf_label, _suffix, _interval in TEXT_TIMEFRAMES:
+        lines = text_signals.get(tf_label, [])
+        if not lines:
+            continue
+        header = f"*BIST30 Mum Formasyonu Taraması — {tf_label}*"
+        for chunk in chunk_lines(header, lines):
+            send_telegram(chunk)
+        any_sent = True
+        print(f"{tf_label}: {len(lines)} yeni sinyal (metin) gönderildi.")
+
+    if any(image_signals.values()):
+        send_image_signals(image_signals)
+        any_sent = True
+
+    if not any_sent:
+        print("Yeni sinyal yok (ya hiç pattern tetiklenmedi ya da hepsi zaten bugün gönderildi).")
+
+    state["sent"] = list(already_sent.union(newly_sent_keys))
+    state["date"] = today_str()
+    save_state(state)
+
+
+if __name__ == "__main__":
+    main()
