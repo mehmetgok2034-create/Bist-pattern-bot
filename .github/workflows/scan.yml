@@ -21,7 +21,7 @@ jobs:
           python-version: "3.11"
 
       - name: Bağımlılıkları kur
-        run: pip install requests
+        run: pip install requests matplotlib mplfinance yfinance
 
       - name: Taramayı çalıştır ve Telegram'a bildir
         env:
