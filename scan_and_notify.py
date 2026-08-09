@@ -2,7 +2,8 @@
 """
 BIST Mum Formasyonu Tarayıcısı -> Telegram Bildirim
 (Çoklu Zaman Dilimi, her zaman dilimi ayrı mesaj, grafik linki,
- aynı gün aynı sinyali TEKRAR GÖNDERMEZ)
+ aynı gün aynı sinyali TEKRAR GÖNDERMEZ, uzun mesajlarda blokları
+ ORTADAN KESMEDEN parçalar)
 
 Ortam değişkenleri (GitHub Secrets üzerinden verilecek):
   TELEGRAM_BOT_TOKEN  -> BotFather'dan aldığın token
@@ -17,6 +18,7 @@ from datetime import datetime, timezone, timedelta
 
 SCANNER_URL = "https://scanner.tradingview.com/turkey/scan?label-product=screener-stock"
 STATE_FILE = "state/sent_today.json"
+MAX_MSG_LEN = 3500  # Telegram sınırı 4096 - güvenli pay bırakıyoruz
 
 PATTERNS = {
     "Candle.Hammer": ("Çekiç", "boğa"),
@@ -63,7 +65,6 @@ def load_state():
             state = json.load(f)
     except Exception:
         return {"date": today_str(), "sent": []}
-
     if state.get("date") != today_str():
         return {"date": today_str(), "sent": []}
     return state
@@ -126,7 +127,7 @@ def chart_link(full_symbol, interval_code):
     return f"https://www.tradingview.com/chart/?symbol={full_symbol}&interval={interval_code}"
 
 
-def build_messages_by_timeframe(data, already_sent):
+def build_lines_by_timeframe(data, already_sent):
     rows = data.get("data", [])
     if not rows:
         return {}, []
@@ -165,14 +166,23 @@ def build_messages_by_timeframe(data, already_sent):
                     newly_sent_keys.append(signal_key)
                 idx += 1
 
-    messages = {}
-    for tf_label, _suffix, _interval in TIMEFRAMES:
-        lines = per_tf_lines[tf_label]
-        if lines:
-            header = f"*BIST Mum Formasyonu Taraması — {tf_label}*\n"
-            messages[tf_label] = header + "\n\n".join(lines)
+    return per_tf_lines, newly_sent_keys
 
-    return messages, newly_sent_keys
+
+def chunk_lines(header, lines, max_len=MAX_MSG_LEN):
+    chunks = []
+    current = [header]
+    current_len = len(header)
+    for line in lines:
+        if current_len + len(line) + 2 > max_len and len(current) > 1:
+            chunks.append("\n\n".join(current))
+            current = [header]
+            current_len = len(header)
+        current.append(line)
+        current_len += len(line) + 2
+    if len(current) > 1:
+        chunks.append("\n\n".join(current))
+    return chunks
 
 
 def send_telegram(message):
@@ -180,19 +190,15 @@ def send_telegram(message):
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
     url = f"https://api.telegram.org/bot{token}/sendMessage"
 
-    max_len = 4000
-    chunks = [message[i:i + max_len] for i in range(0, len(message), max_len)]
-
-    for chunk in chunks:
-        resp = requests.post(url, data={
-            "chat_id": chat_id,
-            "text": chunk,
-            "parse_mode": "Markdown",
-            "disable_web_page_preview": True,
-        }, timeout=15)
-        if not resp.ok:
-            print(f"Telegram gönderim hatası: {resp.status_code} {resp.text}", file=sys.stderr)
-            resp.raise_for_status()
+    resp = requests.post(url, data={
+        "chat_id": chat_id,
+        "text": message,
+        "parse_mode": "Markdown",
+        "disable_web_page_preview": True,
+    }, timeout=15)
+    if not resp.ok:
+        print(f"Telegram gönderim hatası: {resp.status_code} {resp.text}", file=sys.stderr)
+        resp.raise_for_status()
 
 
 def main():
@@ -205,16 +211,23 @@ def main():
         print(f"Scanner sorgu hatası: {e}", file=sys.stderr)
         sys.exit(1)
 
-    messages, newly_sent_keys = build_messages_by_timeframe(data, already_sent)
+    per_tf_lines, newly_sent_keys = build_lines_by_timeframe(data, already_sent)
 
-    if not messages:
-        print("Yeni sinyal yok (ya hiç pattern tetiklenmedi ya da hepsi zaten bugün gönderildi).")
-        return
-
+    any_sent = False
     for tf_label, _suffix, _interval in TIMEFRAMES:
-        if tf_label in messages:
-            send_telegram(messages[tf_label])
-            print(f"{tf_label} için Telegram bildirimi gönderildi.")
+        lines = per_tf_lines.get(tf_label, [])
+        if not lines:
+            continue
+
+        header = f"*BIST Mum Formasyonu Taraması — {tf_label}*"
+        msg_chunks = chunk_lines(header, lines)
+        for chunk in msg_chunks:
+            send_telegram(chunk)
+        any_sent = True
+        print(f"{tf_label}: {len(lines)} yeni sinyal, {len(msg_chunks)} mesajda gönderildi.")
+
+    if not any_sent:
+        print("Yeni sinyal yok (ya hiç pattern tetiklenmedi ya da hepsi zaten bugün gönderildi).")
 
     state["sent"] = list(already_sent.union(newly_sent_keys))
     state["date"] = today_str()
