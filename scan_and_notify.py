@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-BIST Mum Formasyonu Tarayıcısı -> Telegram Bildirim
+BIST30 Mum Formasyonu Tarayıcısı -> Telegram Bildirim
 (Çoklu Zaman Dilimi, her zaman dilimi ayrı mesaj, grafik linki,
  aynı gün aynı sinyali TEKRAR GÖNDERMEZ, uzun mesajlarda blokları
- ORTADAN KESMEDEN parçalar)
+ ORTADAN KESMEDEN parçalar, sadece BIST30 hisseleri)
 
 Ortam değişkenleri (GitHub Secrets üzerinden verilecek):
   TELEGRAM_BOT_TOKEN  -> BotFather'dan aldığın token
@@ -19,6 +19,15 @@ from datetime import datetime, timezone, timedelta
 SCANNER_URL = "https://scanner.tradingview.com/turkey/scan?label-product=screener-stock"
 STATE_FILE = "state/sent_today.json"
 MAX_MSG_LEN = 3500  # Telegram sınırı 4096 - güvenli pay bırakıyoruz
+
+# Güncel BIST30 bileşenleri (Investing.com + TradingView çapraz kontrolü, Ağustos 2026)
+# Not: BIST30 üç ayda bir yeniden belirlenir -- liste zamanla değişebilir.
+BIST30_SYMBOLS = {
+    "AEFES", "AKBNK", "ASELS", "BIMAS", "EKGYO", "ENKAI", "EREGL", "FROTO",
+    "GARAN", "GUBRF", "ISCTR", "KCHOL", "KOZAL", "KRDMD", "MGROS", "PETKM",
+    "SAHOL", "SASA", "SISE", "TAVHL", "TCELL", "THYAO", "TOASO", "TTKOM",
+    "TUPRS", "VAKBN", "YKBNK", "PGSUS", "ASTOR", "DSTKF",
+}
 
 PATTERNS = {
     "Candle.Hammer": ("Çekiç", "boğa"),
@@ -102,7 +111,7 @@ def build_payload():
     return {
         "columns": ALL_COLUMNS,
         "sort": {"sortBy": "volume", "sortOrder": "desc"},
-        "range": [0, 80],
+        "range": [0, 250],
         "markets": ["turkey"],
         "options": {"lang": "tr"},
         "filter2": {
@@ -141,6 +150,10 @@ def build_lines_by_timeframe(data, already_sent):
         if len(d) < len(BASE_COLUMNS):
             continue
         symbol = d[0]
+
+        if symbol not in BIST30_SYMBOLS:
+            continue  # sadece BIST30
+
         close = d[1]
         change = d[2]
         change_str = f"{change:+.2f}%" if change is not None else "N/A"
@@ -219,7 +232,7 @@ def main():
         if not lines:
             continue
 
-        header = f"*BIST Mum Formasyonu Taraması — {tf_label}*"
+        header = f"*BIST30 Mum Formasyonu Taraması — {tf_label}*"
         msg_chunks = chunk_lines(header, lines)
         for chunk in msg_chunks:
             send_telegram(chunk)
