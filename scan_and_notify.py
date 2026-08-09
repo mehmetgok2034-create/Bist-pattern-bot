@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 """
 BIST Mum Formasyonu Tarayıcısı -> Telegram Bildirim
-
-TradingView Scanner API'sini sorgular, bugün boğa/ayı pattern'i
-tetiklenen BIST hisselerini bulur ve Telegram'a mesaj olarak gönderir.
-
-Ortam değişkenleri (GitHub Secrets üzerinden verilecek):
-  TELEGRAM_BOT_TOKEN  -> BotFather'dan aldığın token
-  TELEGRAM_CHAT_ID    -> Mesajın gideceği chat/grup/kanal ID'si
+(Çoklu Zaman Dilimi, her zaman dilimi ayrı mesaj, tıklanabilir grafik linki)
 """
 
 import os
@@ -29,9 +23,23 @@ PATTERNS = {
     "Candle.EveningStar": ("Akşam Yıldızı", "ayı"),
 }
 
+TIMEFRAMES = [
+    ("5 Dakika", "|5", "5"),
+    ("15 Dakika", "|15", "15"),
+    ("1 Saat", "|60", "60"),
+    ("4 Saat", "|240", "240"),
+    ("Günlük", "", "D"),
+    ("Haftalık", "|1W", "W"),
+]
+
 BASE_COLUMNS = ["name", "close", "change", "volume", "market_cap_basic"]
-PATTERN_COLUMNS = list(PATTERNS.keys())
-ALL_COLUMNS = BASE_COLUMNS + PATTERN_COLUMNS
+
+PATTERN_TF_COLUMNS = []
+for pattern_key in PATTERNS:
+    for tf_label, tf_suffix, _interval in TIMEFRAMES:
+        PATTERN_TF_COLUMNS.append(f"{pattern_key}{tf_suffix}")
+
+ALL_COLUMNS = BASE_COLUMNS + PATTERN_TF_COLUMNS
 
 
 def build_payload():
@@ -39,8 +47,8 @@ def build_payload():
         "operation": {
             "operator": "or",
             "operands": [
-                {"expression": {"left": p, "operation": "equal", "right": 1}}
-                for p in PATTERN_COLUMNS
+                {"expression": {"left": col, "operation": "equal", "right": 1}}
+                for col in PATTERN_TF_COLUMNS
             ],
         }
     }
@@ -60,7 +68,7 @@ def build_payload():
     return {
         "columns": ALL_COLUMNS,
         "sort": {"sortBy": "volume", "sortOrder": "desc"},
-        "range": [0, 50],
+        "range": [0, 80],
         "markets": ["turkey"],
         "options": {"lang": "tr"},
         "filter2": {
@@ -76,41 +84,55 @@ def fetch_scan():
         "Origin": "https://www.tradingview.com",
         "Referer": "https://www.tradingview.com/",
     }
-    resp = requests.post(SCANNER_URL, headers=headers, data=json.dumps(build_payload()), timeout=20)
+    resp = requests.post(SCANNER_URL, headers=headers, data=json.dumps(build_payload()), timeout=25)
     resp.raise_for_status()
     return resp.json()
 
 
-def format_message(data):
+def chart_link(full_symbol, interval_code):
+    return f"https://www.tradingview.com/chart/?symbol={full_symbol}&interval={interval_code}"
+
+
+def build_messages_by_timeframe(data):
     rows = data.get("data", [])
     if not rows:
-        return None
+        return {}
 
-    lines = ["*BIST Mum Formasyonu Taraması*\n"]
+    per_tf_lines = {tf_label: [] for tf_label, _, _ in TIMEFRAMES}
+
     for row in rows:
+        full_symbol = row.get("s", "")
         d = row.get("d", [])
+        if len(d) < len(BASE_COLUMNS):
+            continue
         symbol = d[0]
         close = d[1]
         change = d[2]
-        active_patterns = []
-        for i, col in enumerate(PATTERN_COLUMNS):
-            flag_index = len(BASE_COLUMNS) + i
-            if flag_index < len(d) and d[flag_index] == 1:
-                label, direction = PATTERNS[col]
-                icon = "🟢" if direction == "boğa" else "🔴"
-                active_patterns.append(f"{icon} {label}")
-
-        if not active_patterns:
-            continue
-
         change_str = f"{change:+.2f}%" if change is not None else "N/A"
-        lines.append(
-            f"*{symbol}* — {close} TL ({change_str})\n" + ", ".join(active_patterns)
-        )
 
-    if len(lines) == 1:
-        return None
-    return "\n\n".join(lines)
+        idx = len(BASE_COLUMNS)
+        for pattern_key in PATTERNS:
+            for tf_label, _tf_suffix, interval_code in TIMEFRAMES:
+                if idx < len(d) and d[idx] == 1:
+                    label, direction = PATTERNS[pattern_key]
+                    icon = "🟢" if direction == "boğa" else "🔴"
+                    link = chart_link(full_symbol, interval_code)
+                    line = (
+                        f"*{symbol}* — {close} TL ({change_str})\n"
+                        f"{icon} {label}\n"
+                        f"[Grafiği Aç]({link})"
+                    )
+                    per_tf_lines[tf_label].append(line)
+                idx += 1
+
+    messages = {}
+    for tf_label, _suffix, _interval in TIMEFRAMES:
+        lines = per_tf_lines[tf_label]
+        if lines:
+            header = f"*BIST Mum Formasyonu Taraması — {tf_label}*\n"
+            messages[tf_label] = header + "\n\n".join(lines)
+
+    return messages
 
 
 def send_telegram(message):
@@ -126,6 +148,7 @@ def send_telegram(message):
             "chat_id": chat_id,
             "text": chunk,
             "parse_mode": "Markdown",
+            "disable_web_page_preview": True,
         }, timeout=15)
         if not resp.ok:
             print(f"Telegram gönderim hatası: {resp.status_code} {resp.text}", file=sys.stderr)
@@ -139,13 +162,15 @@ def main():
         print(f"Scanner sorgu hatası: {e}", file=sys.stderr)
         sys.exit(1)
 
-    message = format_message(data)
-    if message is None:
-        print("Bugün pattern tetiklenen hisse yok, bildirim gönderilmedi.")
+    messages = build_messages_by_timeframe(data)
+    if not messages:
+        print("Bugün hiçbir zaman diliminde pattern tetiklenen hisse yok, bildirim gönderilmedi.")
         return
 
-    send_telegram(message)
-    print("Telegram bildirimi gönderildi.")
+    for tf_label, _suffix, _interval in TIMEFRAMES:
+        if tf_label in messages:
+            send_telegram(messages[tf_label])
+            print(f"{tf_label} için Telegram bildirimi gönderildi.")
 
 
 if __name__ == "__main__":
