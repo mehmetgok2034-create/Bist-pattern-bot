@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 """
 BIST Mum Formasyonu Tarayıcısı -> Telegram Bildirim
-(Çoklu Zaman Dilimi, her zaman dilimi ayrı mesaj, tıklanabilir grafik linki)
+(Çoklu Zaman Dilimi, her zaman dilimi ayrı mesaj, grafik linki,
+ aynı gün aynı sinyali TEKRAR GÖNDERMEZ)
+
+Ortam değişkenleri (GitHub Secrets üzerinden verilecek):
+  TELEGRAM_BOT_TOKEN  -> BotFather'dan aldığın token
+  TELEGRAM_CHAT_ID    -> Mesajın gideceği chat/grup/kanal ID'si
 """
 
 import os
 import sys
 import json
 import requests
+from datetime import datetime, timezone, timedelta
 
 SCANNER_URL = "https://scanner.tradingview.com/turkey/scan?label-product=screener-stock"
+STATE_FILE = "state/sent_today.json"
 
 PATTERNS = {
     "Candle.Hammer": ("Çekiç", "boğa"),
@@ -40,6 +47,32 @@ for pattern_key in PATTERNS:
         PATTERN_TF_COLUMNS.append(f"{pattern_key}{tf_suffix}")
 
 ALL_COLUMNS = BASE_COLUMNS + PATTERN_TF_COLUMNS
+
+TRT = timezone(timedelta(hours=3))
+
+
+def today_str():
+    return datetime.now(TRT).strftime("%Y-%m-%d")
+
+
+def load_state():
+    if not os.path.exists(STATE_FILE):
+        return {"date": today_str(), "sent": []}
+    try:
+        with open(STATE_FILE, "r", encoding="utf-8") as f:
+            state = json.load(f)
+    except Exception:
+        return {"date": today_str(), "sent": []}
+
+    if state.get("date") != today_str():
+        return {"date": today_str(), "sent": []}
+    return state
+
+
+def save_state(state):
+    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
+    with open(STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump(state, f, ensure_ascii=False, indent=2)
 
 
 def build_payload():
@@ -93,12 +126,13 @@ def chart_link(full_symbol, interval_code):
     return f"https://www.tradingview.com/chart/?symbol={full_symbol}&interval={interval_code}"
 
 
-def build_messages_by_timeframe(data):
+def build_messages_by_timeframe(data, already_sent):
     rows = data.get("data", [])
     if not rows:
-        return {}
+        return {}, []
 
     per_tf_lines = {tf_label: [] for tf_label, _, _ in TIMEFRAMES}
+    newly_sent_keys = []
 
     for row in rows:
         full_symbol = row.get("s", "")
@@ -114,6 +148,11 @@ def build_messages_by_timeframe(data):
         for pattern_key in PATTERNS:
             for tf_label, _tf_suffix, interval_code in TIMEFRAMES:
                 if idx < len(d) and d[idx] == 1:
+                    signal_key = f"{symbol}|{pattern_key}|{tf_label}"
+                    if signal_key in already_sent:
+                        idx += 1
+                        continue
+
                     label, direction = PATTERNS[pattern_key]
                     icon = "🟢" if direction == "boğa" else "🔴"
                     link = chart_link(full_symbol, interval_code)
@@ -123,6 +162,7 @@ def build_messages_by_timeframe(data):
                         f"[Grafiği Aç]({link})"
                     )
                     per_tf_lines[tf_label].append(line)
+                    newly_sent_keys.append(signal_key)
                 idx += 1
 
     messages = {}
@@ -132,7 +172,7 @@ def build_messages_by_timeframe(data):
             header = f"*BIST Mum Formasyonu Taraması — {tf_label}*\n"
             messages[tf_label] = header + "\n\n".join(lines)
 
-    return messages
+    return messages, newly_sent_keys
 
 
 def send_telegram(message):
@@ -156,21 +196,29 @@ def send_telegram(message):
 
 
 def main():
+    state = load_state()
+    already_sent = set(state.get("sent", []))
+
     try:
         data = fetch_scan()
     except Exception as e:
         print(f"Scanner sorgu hatası: {e}", file=sys.stderr)
         sys.exit(1)
 
-    messages = build_messages_by_timeframe(data)
+    messages, newly_sent_keys = build_messages_by_timeframe(data, already_sent)
+
     if not messages:
-        print("Bugün hiçbir zaman diliminde pattern tetiklenen hisse yok, bildirim gönderilmedi.")
+        print("Yeni sinyal yok (ya hiç pattern tetiklenmedi ya da hepsi zaten bugün gönderildi).")
         return
 
     for tf_label, _suffix, _interval in TIMEFRAMES:
         if tf_label in messages:
             send_telegram(messages[tf_label])
             print(f"{tf_label} için Telegram bildirimi gönderildi.")
+
+    state["sent"] = list(already_sent.union(newly_sent_keys))
+    state["date"] = today_str()
+    save_state(state)
 
 
 if __name__ == "__main__":
