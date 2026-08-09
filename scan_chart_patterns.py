@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-BIST Günlük Grafik Formasyonu Tarayıcısı (Çift Dip / Çift Tepe)
+BIST30 Günlük Grafik Formasyonu Tarayıcısı (Çift Dip / Çift Tepe)
 -> Telegram'a grafik görseli + özet çizelge gönderir.
 
 Bu, mum formasyonu (Hammer/Engulfing vb.) botundan AYRI bir sistemdir.
 Günde bir kez (piyasa kapanışı sonrası) çalışacak şekilde tasarlanmıştır.
+Sadece BIST30 hisselerini tarar.
 
 Ortam değişkenleri:
   TELEGRAM_BOT_TOKEN
@@ -26,17 +27,21 @@ import yfinance as yf
 from scipy.signal import argrelextrema
 from datetime import datetime, timezone, timedelta
 
-SCANNER_URL = "https://scanner.tradingview.com/turkey/scan?label-product=screener-stock"
 STATE_FILE = "state/sent_daily_patterns.json"
-UNIVERSE_SIZE = 100          # prototip: hacme göre ilk N hisse
-LOOKBACK_BARS = 120          # formasyon aranan geçmiş bar sayısı
+LOOKBACK_BARS = 120
 TRT = timezone(timedelta(hours=3))
+
+BIST30_SYMBOLS = [
+    "AEFES", "AKBNK", "ASELS", "BIMAS", "EKGYO", "ENKAI", "EREGL", "FROTO",
+    "GARAN", "GUBRF", "ISCTR", "KCHOL", "KOZAL", "KRDMD", "MGROS", "PETKM",
+    "SAHOL", "SASA", "SISE", "TAVHL", "TCELL", "THYAO", "TOASO", "TTKOM",
+    "TUPRS", "VAKBN", "YKBNK", "PGSUS", "ASTOR", "DSTKF",
+]
 
 BG, FG = "#0d1117", "#e6edf3"
 GREEN, RED, GRID, ACCENT = "#3fb950", "#f85149", "#21262d", "#58a6ff"
 
 
-# ---------------------------------------------------------------- yardımcılar
 def today_str():
     return datetime.now(TRT).strftime("%Y-%m-%d")
 
@@ -60,45 +65,19 @@ def save_state(state):
         json.dump(state, f, ensure_ascii=False, indent=2)
 
 
-# ---------------------------------------------------------------- evren listesi
-def fetch_universe():
-    """TradingView scanner'dan hacme göre ilk UNIVERSE_SIZE BIST hissesi."""
-    payload = {
-        "columns": ["name", "close", "change"],
-        "sort": {"sortBy": "volume", "sortOrder": "desc"},
-        "range": [0, UNIVERSE_SIZE],
-        "markets": ["turkey"],
-        "options": {"lang": "tr"},
-        "filter2": {
-            "operator": "and",
-            "operands": [
-                {"operation": {"operator": "and", "operands": [
-                    {"expression": {"left": "type", "operation": "equal", "right": "stock"}},
-                    {"expression": {"left": "typespecs", "operation": "has", "right": ["common"]}},
-                ]}},
-                {"expression": {"left": "typespecs", "operation": "has_none_of", "right": ["pre-ipo"]}},
-            ],
-        },
-    }
-    headers = {
-        "Content-Type": "application/json",
-        "Origin": "https://www.tradingview.com",
-        "Referer": "https://www.tradingview.com/",
-    }
-    resp = requests.post(SCANNER_URL, headers=headers, data=json.dumps(payload), timeout=25)
-    resp.raise_for_status()
-    data = resp.json()
-    return [row["d"][0] for row in data.get("data", [])]
-
-
 def fetch_daily_ohlc_batch(symbols):
-    """Yahoo Finance'ten toplu günlük OHLC (BIST -> .IS uzantısı)."""
     yf_tickers = [s + ".IS" for s in symbols]
     raw = yf.download(
         tickers=yf_tickers, period="1y", interval="1d",
         group_by="ticker", threads=True, progress=False, auto_adjust=False,
     )
     out = {}
+    if len(symbols) == 1:
+        s = symbols[0]
+        df = raw.dropna(how="all")
+        if len(df) >= 60:
+            out[s] = df
+        return out
     for s, yf_t in zip(symbols, yf_tickers):
         try:
             df = raw[yf_t].dropna(how="all")
@@ -109,7 +88,6 @@ def fetch_daily_ohlc_batch(symbols):
     return out
 
 
-# ---------------------------------------------------------------- formasyon tespiti
 def find_extrema(series, order=5):
     values = series.values
     max_idx = argrelextrema(values, np.greater_equal, order=order)[0]
@@ -186,7 +164,6 @@ def detect_double_bottom(df, order=5, tolerance=0.025, min_gap=8, lookback=LOOKB
     return None
 
 
-# ---------------------------------------------------------------- görselleştirme
 def render_pattern_chart(symbol, df, pattern_info, pattern_name, lookback=LOOKBACK_BARS):
     sub = df.iloc[-lookback:].copy()
     mc = mpf.make_marketcolors(up=GREEN, down=RED, edge="inherit", wick="inherit", volume="inherit")
@@ -283,7 +260,6 @@ def render_summary_table(hits, title):
     return buf.getvalue()
 
 
-# ---------------------------------------------------------------- telegram
 def send_telegram_photo(photo_bytes, caption):
     token = os.environ["TELEGRAM_BOT_TOKEN"]
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
@@ -303,24 +279,17 @@ def chart_link(symbol):
     return f"https://www.tradingview.com/chart/?symbol=BIST:{symbol}&interval=D"
 
 
-# ---------------------------------------------------------------- ana akış
 def main():
     state = load_state()
     already_sent = set(state.get("sent", []))
 
     try:
-        symbols = fetch_universe()
-    except Exception as e:
-        print(f"Evren listesi alınamadı: {e}", file=sys.stderr)
-        sys.exit(1)
-
-    try:
-        ohlc = fetch_daily_ohlc_batch(symbols)
+        ohlc = fetch_daily_ohlc_batch(BIST30_SYMBOLS)
     except Exception as e:
         print(f"OHLC verisi alınamadı: {e}", file=sys.stderr)
         sys.exit(1)
 
-    all_hits = []       # bugün aktif olan TÜM sinyaller (çizelge için)
+    all_hits = []
     newly_sent_keys = []
 
     for symbol, df in ohlc.items():
@@ -351,8 +320,8 @@ def main():
 
     if all_hits:
         try:
-            table_png = render_summary_table(all_hits, f"BIST Günlük Formasyon Özeti — {today_str()}")
-            send_telegram_photo(table_png, f"*BIST Günlük Formasyon Özeti* — {today_str()}")
+            table_png = render_summary_table(all_hits, f"BIST30 Günlük Formasyon Özeti — {today_str()}")
+            send_telegram_photo(table_png, f"*BIST30 Günlük Formasyon Özeti* — {today_str()}")
         except Exception as e:
             print(f"Özet çizelge gönderilemedi: {e}", file=sys.stderr)
     else:
