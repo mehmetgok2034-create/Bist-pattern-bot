@@ -2,7 +2,7 @@ name: BIST Günlük Grafik Formasyonu
 
 on:
   schedule:
-    - cron: "15 15 * * 1-5"
+    - cron: "*/15 7-14 * * 1-5"
   workflow_dispatch: {}
 
 permissions:
@@ -34,5 +34,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add state/sent_daily_patterns.json
-          git diff --staged --quiet || git commit -m "Günlük formasyon durumunu güncelle"
+          git diff --staged --quiet || git commit -m "Formasyon durumunu güncelle"
           git push
