@@ -1,10 +1,19 @@
 {
   "date": "2026-08-10",
   "sent": [
-    "ASTOR|Candle.Engulfing.Bearish|Günlük",
-    "FROTO|Candle.Engulfing.Bullish|4 Saat",
-    "SASA|Candle.Harami.Bullish|Haftalık",
+    "MGROS|Candle.HangingMan|1 Saat",
+    "VAKBN|Candle.Hammer|1 Saat",
+    "KRDMD|Candle.Engulfing.Bullish|4 Saat",
+    "PETKM|Candle.HangingMan|5 Dakika",
     "AKBNK|Candle.Harami.Bullish|Haftalık",
-    "KRDMD|Candle.Engulfing.Bullish|4 Saat"
+    "ISCTR|Candle.Hammer|4 Saat",
+    "ASTOR|Candle.Engulfing.Bearish|Günlük",
+    "SAHOL|Candle.ShootingStar|4 Saat",
+    "MGROS|Candle.HangingMan|4 Saat",
+    "SASA|Candle.Harami.Bullish|Haftalık",
+    "ISCTR|Candle.Hammer|1 Saat",
+    "FROTO|Candle.Engulfing.Bullish|4 Saat",
+    "PETKM|Candle.HangingMan|15 Dakika",
+    "VAKBN|Candle.Hammer|4 Saat"
   ]
 }
