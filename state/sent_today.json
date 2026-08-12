@@ -1,21 +1,18 @@
 {
-  "date": "2026-08-11",
+  "date": "2026-08-12",
   "sent": [
-    "YKBNK|Candle.Hammer|15 Dakika",
-    "TAVHL|Candle.Harami.Bullish|5 Dakika",
-    "VAKBN|Candle.ShootingStar|5 Dakika",
-    "TTKOM|Candle.Engulfing.Bearish|1 Saat",
-    "FROTO|Candle.Hammer|Günlük",
-    "FROTO|Candle.Engulfing.Bullish|4 Saat",
-    "GUBRF|Candle.Hammer|1 Saat",
-    "FROTO|Candle.Engulfing.Bullish|Günlük",
-    "EKGYO|Candle.ShootingStar|5 Dakika",
-    "BIMAS|Candle.Harami.Bullish|5 Dakika",
-    "EKGYO|Candle.ShootingStar|15 Dakika",
-    "MGROS|Candle.Hammer|15 Dakika",
-    "EREGL|Candle.Engulfing.Bearish|5 Dakika",
-    "VAKBN|Candle.ShootingStar|15 Dakika",
-    "TUPRS|Candle.Engulfing.Bearish|4 Saat",
-    "ASTOR|Candle.ShootingStar|4 Saat"
+    "VAKBN|Candle.Engulfing.Bullish|Günlük",
+    "TUPRS|Candle.ShootingStar|15 Dakika",
+    "ISCTR|Candle.Engulfing.Bullish|Günlük",
+    "AKBNK|Candle.Engulfing.Bullish|Günlük",
+    "EREGL|Candle.InvertedHammer|4 Saat",
+    "VAKBN|Candle.Engulfing.Bullish|1 Saat",
+    "EREGL|Candle.InvertedHammer|1 Saat",
+    "THYAO|Candle.Engulfing.Bullish|Günlük",
+    "GUBRF|Candle.Harami.Bullish|1 Saat",
+    "AKBNK|Candle.Hammer|Haftalık",
+    "GUBRF|Candle.Harami.Bullish|4 Saat",
+    "PGSUS|Candle.Engulfing.Bullish|Günlük",
+    "SAHOL|Candle.Engulfing.Bullish|Günlük"
   ]
 }
