@@ -1,15 +1,23 @@
 {
   "date": "2026-08-14",
   "sent": [
-    "AKBNK|Candle.HangingMan|15 Dakika",
-    "EREGL|Candle.HangingMan|1 Saat",
-    "THYAO|Candle.HangingMan|15 Dakika",
-    "BIMAS|Candle.Harami.Bullish|5 Dakika",
-    "TCELL|Candle.InvertedHammer|1 Saat",
-    "SISE|Candle.HangingMan|15 Dakika",
-    "EREGL|Candle.Hammer|4 Saat",
-    "TCELL|Candle.ShootingStar|4 Saat",
     "PGSUS|Candle.Hammer|15 Dakika",
-    "SAHOL|Candle.HangingMan|15 Dakika"
+    "EREGL|Candle.InvertedHammer|1 Saat",
+    "THYAO|Candle.HangingMan|15 Dakika",
+    "THYAO|Candle.Harami.Bullish|4 Saat",
+    "VAKBN|Candle.ShootingStar|1 Saat",
+    "TCELL|Candle.InvertedHammer|1 Saat",
+    "EREGL|Candle.HangingMan|1 Saat",
+    "BIMAS|Candle.Harami.Bullish|5 Dakika",
+    "VAKBN|Candle.ShootingStar|4 Saat",
+    "EREGL|Candle.Hammer|4 Saat",
+    "SISE|Candle.Harami.Bullish|4 Saat",
+    "AKBNK|Candle.HangingMan|15 Dakika",
+    "SAHOL|Candle.HangingMan|15 Dakika",
+    "EREGL|Candle.InvertedHammer|15 Dakika",
+    "SISE|Candle.HangingMan|15 Dakika",
+    "TCELL|Candle.ShootingStar|4 Saat",
+    "EREGL|Candle.InvertedHammer|4 Saat",
+    "VAKBN|Candle.InvertedHammer|15 Dakika"
   ]
 }
