@@ -3,14 +3,21 @@
   "sent": [
     "YKBNK|Candle.InvertedHammer|15 Dakika",
     "ASELS|Candle.Hammer|5 Dakika",
-    "GUBRF|Candle.Harami.Bullish|Haftalık",
-    "EKGYO|Candle.Engulfing.Bullish|Günlük",
-    "BIMAS|Candle.Engulfing.Bullish|1 Saat",
     "ENKAI|Candle.Hammer|5 Dakika",
-    "EREGL|Candle.Harami.Bullish|Günlük",
+    "GUBRF|Candle.Harami.Bullish|Haftalık",
+    "BIMAS|Candle.HangingMan|5 Dakika",
+    "GARAN|Candle.Engulfing.Bearish|1 Saat",
+    "DSTKF|Candle.Hammer|5 Dakika",
+    "ISCTR|Candle.Hammer|15 Dakika",
+    "BIMAS|Candle.Engulfing.Bullish|1 Saat",
+    "EKGYO|Candle.Engulfing.Bullish|Günlük",
+    "SISE|Candle.Hammer|15 Dakika",
     "KCHOL|Candle.ShootingStar|15 Dakika",
     "SISE|Candle.Hammer|5 Dakika",
-    "GARAN|Candle.Engulfing.Bearish|1 Saat",
-    "ASTOR|Candle.Engulfing.Bearish|4 Saat"
+    "ASTOR|Candle.Engulfing.Bearish|4 Saat",
+    "AKBNK|Candle.Hammer|15 Dakika",
+    "EREGL|Candle.Harami.Bullish|Günlük",
+    "THYAO|Candle.Hammer|15 Dakika",
+    "AKBNK|Candle.Engulfing.Bearish|1 Saat"
   ]
 }
