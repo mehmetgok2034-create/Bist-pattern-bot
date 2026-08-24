@@ -1,14 +1,15 @@
 {
   "date": "2026-08-24",
   "sent": [
-    "BIMAS|Candle.Engulfing.Bearish|Günlük",
-    "EKGYO|Candle.Engulfing.Bearish|15 Dakika",
-    "AKBNK|Candle.Engulfing.Bearish|4 Saat",
-    "SISE|Candle.Engulfing.Bearish|1 Saat",
-    "THYAO|Candle.HangingMan|1 Saat",
-    "TCELL|Candle.Engulfing.Bearish|1 Saat",
-    "EREGL|Candle.Engulfing.Bearish|1 Saat",
     "TUPRS|Candle.Engulfing.Bearish|4 Saat",
-    "TOASO|Candle.Engulfing.Bearish|4 Saat"
+    "TCELL|Candle.Engulfing.Bearish|1 Saat",
+    "EKGYO|Candle.Engulfing.Bearish|15 Dakika",
+    "BIMAS|Candle.Engulfing.Bearish|Günlük",
+    "TOASO|Candle.Engulfing.Bearish|4 Saat",
+    "ISCTR|Candle.Engulfing.Bearish|15 Dakika",
+    "THYAO|Candle.HangingMan|1 Saat",
+    "EREGL|Candle.Engulfing.Bearish|1 Saat",
+    "SISE|Candle.Engulfing.Bearish|1 Saat",
+    "AKBNK|Candle.Engulfing.Bearish|4 Saat"
   ]
 }
