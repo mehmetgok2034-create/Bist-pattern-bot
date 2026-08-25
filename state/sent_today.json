@@ -1,13 +1,16 @@
 {
   "date": "2026-08-25",
   "sent": [
-    "TAVHL|Candle.InvertedHammer|15 Dakika",
-    "SAHOL|Candle.InvertedHammer|5 Dakika",
-    "GUBRF|Candle.Engulfing.Bullish|5 Dakika",
     "SISE|Candle.Engulfing.Bullish|4 Saat",
+    "GARAN|Candle.Engulfing.Bearish|5 Dakika",
     "BIMAS|Candle.Engulfing.Bearish|5 Dakika",
+    "ASTOR|Candle.InvertedHammer|15 Dakika",
+    "SAHOL|Candle.InvertedHammer|5 Dakika",
     "PETKM|Candle.InvertedHammer|5 Dakika",
+    "AEFES|Candle.InvertedHammer|15 Dakika",
+    "DSTKF|Candle.HangingMan|5 Dakika",
+    "GUBRF|Candle.Engulfing.Bullish|5 Dakika",
     "TAVHL|Candle.Harami.Bullish|Günlük",
-    "GARAN|Candle.Engulfing.Bearish|5 Dakika"
+    "TAVHL|Candle.InvertedHammer|15 Dakika"
   ]
 }
