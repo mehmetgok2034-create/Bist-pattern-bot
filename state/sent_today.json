@@ -3,12 +3,14 @@
   "sent": [
     "FROTO|Candle.Harami.Bullish|Günlük",
     "KRDMD|Candle.Engulfing.Bearish|Günlük",
-    "TAVHL|Candle.Hammer|4 Saat",
-    "ASTOR|Candle.Engulfing.Bearish|Haftalık",
-    "EREGL|Candle.Engulfing.Bearish|Haftalık",
-    "PGSUS|Candle.Hammer|1 Saat",
+    "SASA|Candle.Harami.Bullish|Günlük",
     "PGSUS|Candle.Hammer|4 Saat",
+    "TAVHL|Candle.Hammer|4 Saat",
+    "PGSUS|Candle.Hammer|1 Saat",
+    "TOASO|Candle.HangingMan|5 Dakika",
+    "TAVHL|Candle.HangingMan|5 Dakika",
+    "ASTOR|Candle.Engulfing.Bearish|Haftalık",
     "KRDMD|Candle.Engulfing.Bearish|Haftalık",
-    "SASA|Candle.Harami.Bullish|Günlük"
+    "EREGL|Candle.Engulfing.Bearish|Haftalık"
   ]
 }
