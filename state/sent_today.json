@@ -1,22 +1,24 @@
 {
   "date": "2026-09-07",
   "sent": [
-    "KRDMD|Candle.Engulfing.Bearish|Haftalık",
-    "VAKBN|Candle.Engulfing.Bearish|4 Saat",
-    "EREGL|Candle.Engulfing.Bearish|Haftalık",
-    "TTKOM|Candle.Hammer|Günlük",
-    "TTKOM|Candle.Hammer|Haftalık",
     "ASTOR|Candle.Engulfing.Bearish|Haftalık",
-    "GARAN|Candle.HangingMan|5 Dakika",
+    "SAHOL|Candle.Engulfing.Bearish|Günlük",
     "VAKBN|Candle.HangingMan|4 Saat",
+    "TTKOM|Candle.Hammer|Günlük",
     "SAHOL|Candle.Harami.Bullish|15 Dakika",
+    "EREGL|Candle.Engulfing.Bearish|Haftalık",
+    "THYAO|Candle.Engulfing.Bearish|15 Dakika",
+    "SISE|Candle.HangingMan|5 Dakika",
     "VAKBN|Candle.Hammer|5 Dakika",
+    "VAKBN|Candle.Engulfing.Bearish|4 Saat",
+    "ENKAI|Candle.HangingMan|5 Dakika",
+    "TOASO|Candle.Engulfing.Bullish|Günlük",
+    "GARAN|Candle.HangingMan|5 Dakika",
     "GARAN|Candle.InvertedHammer|4 Saat",
     "AEFES|Candle.HangingMan|Haftalık",
-    "SISE|Candle.HangingMan|5 Dakika",
-    "ENKAI|Candle.HangingMan|5 Dakika",
+    "ASELS|Candle.ShootingStar|15 Dakika",
     "SASA|Candle.InvertedHammer|4 Saat",
-    "TOASO|Candle.Engulfing.Bullish|Günlük",
-    "SAHOL|Candle.Engulfing.Bearish|Günlük"
+    "KRDMD|Candle.Engulfing.Bearish|Haftalık",
+    "TTKOM|Candle.Hammer|Haftalık"
   ]
 }
