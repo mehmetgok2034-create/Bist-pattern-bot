@@ -1,7 +1,11 @@
 {
   "date": "2026-09-08",
   "sent": [
+    "BIMAS|Candle.HangingMan|4 Saat",
+    "PGSUS|Candle.Hammer|Günlük",
+    "ASELS|Candle.ShootingStar|Günlük",
+    "DSTKF|Candle.ShootingStar|5 Dakika",
     "ASELS|Candle.ShootingStar|Haftalık",
-    "ASELS|Candle.ShootingStar|Günlük"
+    "SISE|Candle.Engulfing.Bearish|5 Dakika"
   ]
 }
