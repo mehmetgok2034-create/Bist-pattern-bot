@@ -1,19 +1,22 @@
 {
   "date": "2026-09-10",
   "sent": [
-    "TAVHL|Candle.Engulfing.Bearish|Günlük",
-    "TCELL|Candle.Harami.Bullish|4 Saat",
-    "TOASO|Candle.Engulfing.Bearish|1 Saat",
-    "VAKBN|Candle.Harami.Bullish|5 Dakika",
-    "VAKBN|Candle.InvertedHammer|5 Dakika",
-    "GARAN|Candle.HangingMan|1 Saat",
-    "MGROS|Candle.InvertedHammer|4 Saat",
-    "TTKOM|Candle.Engulfing.Bullish|Haftalık",
-    "TCELL|Candle.HangingMan|1 Saat",
-    "TOASO|Candle.Engulfing.Bearish|Günlük",
-    "TAVHL|Candle.InvertedHammer|15 Dakika",
-    "KCHOL|Candle.Engulfing.Bullish|15 Dakika",
     "PGSUS|Candle.Engulfing.Bullish|Haftalık",
-    "FROTO|Candle.Engulfing.Bearish|Günlük"
+    "AKBNK|Candle.Harami.Bullish|4 Saat",
+    "MGROS|Candle.InvertedHammer|4 Saat",
+    "VAKBN|Candle.InvertedHammer|5 Dakika",
+    "TTKOM|Candle.Engulfing.Bullish|Haftalık",
+    "YKBNK|Candle.InvertedHammer|4 Saat",
+    "KCHOL|Candle.Engulfing.Bullish|15 Dakika",
+    "TOASO|Candle.Engulfing.Bearish|1 Saat",
+    "TAVHL|Candle.Engulfing.Bearish|Günlük",
+    "FROTO|Candle.Engulfing.Bearish|Günlük",
+    "TCELL|Candle.HangingMan|1 Saat",
+    "VAKBN|Candle.Harami.Bullish|5 Dakika",
+    "TAVHL|Candle.InvertedHammer|15 Dakika",
+    "GARAN|Candle.HangingMan|1 Saat",
+    "TOASO|Candle.Engulfing.Bearish|Günlük",
+    "EKGYO|Candle.Harami.Bullish|15 Dakika",
+    "TCELL|Candle.Harami.Bullish|4 Saat"
   ]
 }
