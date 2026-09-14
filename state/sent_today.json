@@ -1,13 +1,14 @@
 {
   "date": "2026-09-14",
   "sent": [
-    "ENKAI|Candle.Engulfing.Bearish|4 Saat",
-    "THYAO|Candle.Hammer|1 Saat",
-    "KCHOL|Candle.HangingMan|1 Saat",
-    "FROTO|Candle.Engulfing.Bearish|4 Saat",
-    "TTKOM|Candle.Engulfing.Bullish|15 Dakika",
+    "ISCTR|Candle.Engulfing.Bullish|5 Dakika",
     "TAVHL|Candle.Hammer|1 Saat",
     "TTKOM|Candle.Engulfing.Bullish|5 Dakika",
-    "ISCTR|Candle.Engulfing.Bullish|5 Dakika"
+    "FROTO|Candle.Engulfing.Bearish|4 Saat",
+    "TTKOM|Candle.Engulfing.Bullish|15 Dakika",
+    "ENKAI|Candle.Engulfing.Bearish|4 Saat",
+    "KCHOL|Candle.HangingMan|1 Saat",
+    "ASELS|Candle.Harami.Bullish|1 Saat",
+    "THYAO|Candle.Hammer|1 Saat"
   ]
 }
