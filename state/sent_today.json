@@ -1,17 +1,21 @@
 {
   "date": "2026-09-15",
   "sent": [
-    "GARAN|Candle.Engulfing.Bearish|Günlük",
-    "AKBNK|Candle.Engulfing.Bearish|Günlük",
-    "KCHOL|Candle.Harami.Bullish|1 Saat",
-    "ISCTR|Candle.Engulfing.Bearish|Günlük",
-    "AEFES|Candle.Harami.Bullish|1 Saat",
-    "SAHOL|Candle.Engulfing.Bearish|Günlük",
-    "KCHOL|Candle.Engulfing.Bearish|Günlük",
-    "AKBNK|Candle.Harami.Bullish|1 Saat",
-    "YKBNK|Candle.Engulfing.Bearish|Günlük",
     "ASTOR|Candle.Hammer|1 Saat",
+    "GARAN|Candle.Engulfing.Bearish|Günlük",
     "ASTOR|Candle.Hammer|15 Dakika",
-    "ASELS|Candle.Engulfing.Bullish|4 Saat"
+    "TOASO|Candle.Engulfing.Bearish|4 Saat",
+    "AEFES|Candle.Harami.Bullish|1 Saat",
+    "KCHOL|Candle.Engulfing.Bearish|4 Saat",
+    "SAHOL|Candle.Engulfing.Bearish|Günlük",
+    "AKBNK|Candle.Engulfing.Bearish|Günlük",
+    "TCELL|Candle.Harami.Bullish|1 Saat",
+    "KCHOL|Candle.Engulfing.Bearish|Günlük",
+    "YKBNK|Candle.Engulfing.Bearish|Günlük",
+    "SISE|Candle.Engulfing.Bearish|4 Saat",
+    "AKBNK|Candle.Harami.Bullish|1 Saat",
+    "KCHOL|Candle.Harami.Bullish|1 Saat",
+    "ASELS|Candle.Engulfing.Bullish|4 Saat",
+    "ISCTR|Candle.Engulfing.Bearish|Günlük"
   ]
 }
