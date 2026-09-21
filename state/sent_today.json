@@ -1,10 +1,14 @@
 {
-  "date": "2026-09-18",
+  "date": "2026-09-21",
   "sent": [
-    "KRDMD|Candle.InvertedHammer|4 Saat",
-    "TUPRS|Candle.Engulfing.Bearish|1 Saat",
-    "TAVHL|Candle.HangingMan|1 Saat",
-    "TUPRS|Candle.ShootingStar|4 Saat",
-    "AKBNK|Candle.Engulfing.Bullish|15 Dakika"
+    "ASELS|Candle.Engulfing.Bullish|4 Saat",
+    "SISE|Candle.Engulfing.Bullish|4 Saat",
+    "THYAO|Candle.Engulfing.Bullish|4 Saat",
+    "PETKM|Candle.Engulfing.Bullish|4 Saat",
+    "GARAN|Candle.Harami.Bullish|5 Dakika",
+    "SAHOL|Candle.Engulfing.Bullish|4 Saat",
+    "PGSUS|Candle.Engulfing.Bullish|4 Saat",
+    "TTKOM|Candle.Engulfing.Bullish|4 Saat",
+    "TTKOM|Candle.ShootingStar|1 Saat"
   ]
 }
