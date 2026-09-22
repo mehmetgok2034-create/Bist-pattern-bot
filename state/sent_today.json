@@ -1,8 +1,10 @@
 {
   "date": "2026-09-22",
   "sent": [
+    "TCELL|Candle.InvertedHammer|Günlük",
     "BIMAS|Candle.Engulfing.Bearish|4 Saat",
+    "TUPRS|Candle.EveningStar|Haftalık",
     "AEFES|Candle.Engulfing.Bearish|4 Saat",
-    "TUPRS|Candle.EveningStar|Haftalık"
+    "AEFES|Candle.HangingMan|4 Saat"
   ]
 }
