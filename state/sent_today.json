@@ -1,12 +1,10 @@
 {
-  "date": "2026-09-23",
+  "date": "2026-09-24",
   "sent": [
-    "TOASO|Candle.Hammer|1 Saat",
-    "SAHOL|Candle.Engulfing.Bullish|5 Dakika",
-    "GARAN|Candle.Harami.Bullish|5 Dakika",
-    "TOASO|Candle.Hammer|15 Dakika",
-    "AEFES|Candle.ShootingStar|1 Saat",
-    "VAKBN|Candle.Engulfing.Bullish|5 Dakika",
-    "AEFES|Candle.ShootingStar|15 Dakika"
+    "GUBRF|Candle.Hammer|15 Dakika",
+    "BIMAS|Candle.Hammer|5 Dakika",
+    "KRDMD|Candle.ShootingStar|Günlük",
+    "GUBRF|Candle.Hammer|1 Saat",
+    "MGROS|Candle.Harami.Bullish|5 Dakika"
   ]
 }
