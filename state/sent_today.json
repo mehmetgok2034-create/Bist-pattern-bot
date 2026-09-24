@@ -1,10 +1,13 @@
 {
   "date": "2026-09-24",
   "sent": [
+    "KRDMD|Candle.ShootingStar|Günlük",
     "GUBRF|Candle.Hammer|15 Dakika",
     "BIMAS|Candle.Hammer|5 Dakika",
-    "KRDMD|Candle.ShootingStar|Günlük",
     "GUBRF|Candle.Hammer|1 Saat",
-    "MGROS|Candle.Harami.Bullish|5 Dakika"
+    "SASA|Candle.Harami.Bullish|15 Dakika",
+    "FROTO|Candle.Harami.Bullish|1 Saat",
+    "MGROS|Candle.Harami.Bullish|5 Dakika",
+    "SASA|Candle.Harami.Bullish|1 Saat"
   ]
 }
