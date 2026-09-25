@@ -1,13 +1,17 @@
 {
-  "date": "2026-09-24",
+  "date": "2026-09-25",
   "sent": [
-    "KRDMD|Candle.ShootingStar|Günlük",
-    "GUBRF|Candle.Hammer|15 Dakika",
-    "BIMAS|Candle.Hammer|5 Dakika",
-    "GUBRF|Candle.Hammer|1 Saat",
-    "SASA|Candle.Harami.Bullish|15 Dakika",
-    "FROTO|Candle.Harami.Bullish|1 Saat",
-    "MGROS|Candle.Harami.Bullish|5 Dakika",
-    "SASA|Candle.Harami.Bullish|1 Saat"
+    "TAVHL|Candle.Hammer|15 Dakika",
+    "THYAO|Candle.Hammer|5 Dakika",
+    "TOASO|Candle.HangingMan|5 Dakika",
+    "YKBNK|Candle.Hammer|1 Saat",
+    "TAVHL|Candle.Hammer|1 Saat",
+    "SISE|Candle.Hammer|5 Dakika",
+    "YKBNK|Candle.Hammer|15 Dakika",
+    "ASTOR|Candle.Engulfing.Bullish|5 Dakika",
+    "SAHOL|Candle.Harami.Bullish|Günlük",
+    "ASELS|Candle.Harami.Bullish|Günlük",
+    "ENKAI|Candle.Harami.Bullish|Günlük",
+    "AEFES|Candle.HangingMan|5 Dakika"
   ]
 }
