@@ -1,11 +1,13 @@
 {
   "date": "2026-09-29",
   "sent": [
-    "KCHOL|Candle.ShootingStar|Günlük",
-    "SASA|Candle.Harami.Bullish|1 Saat",
-    "PETKM|Candle.InvertedHammer|5 Dakika",
-    "KRDMD|Candle.Engulfing.Bearish|Günlük",
     "BIMAS|Candle.Engulfing.Bearish|Günlük",
-    "PETKM|Candle.Harami.Bullish|5 Dakika"
+    "TAVHL|Candle.InvertedHammer|Günlük",
+    "PETKM|Candle.Harami.Bullish|5 Dakika",
+    "PETKM|Candle.InvertedHammer|5 Dakika",
+    "SASA|Candle.Harami.Bullish|1 Saat",
+    "ENKAI|Candle.InvertedHammer|Haftalık",
+    "KRDMD|Candle.Engulfing.Bearish|Günlük",
+    "KCHOL|Candle.ShootingStar|Günlük"
   ]
 }
