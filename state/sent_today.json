@@ -1,27 +1,9 @@
 {
-  "date": "2026-10-01",
+  "date": "2026-10-02",
   "sent": [
-    "THYAO|Candle.Harami.Bullish|Günlük",
-    "TCELL|Candle.Engulfing.Bearish|1 Saat",
-    "ASELS|Candle.HangingMan|Haftalık",
-    "YKBNK|Candle.ShootingStar|5 Dakika",
-    "TOASO|Candle.Harami.Bullish|Günlük",
-    "AEFES|Candle.ShootingStar|15 Dakika",
-    "SISE|Candle.Harami.Bullish|Günlük",
-    "GARAN|Candle.ShootingStar|15 Dakika",
-    "TTKOM|Candle.ShootingStar|15 Dakika",
-    "GARAN|Candle.ShootingStar|5 Dakika",
-    "ISCTR|Candle.Engulfing.Bullish|4 Saat",
-    "GARAN|Candle.Harami.Bullish|Günlük",
-    "AEFES|Candle.InvertedHammer|5 Dakika",
-    "YKBNK|Candle.ShootingStar|15 Dakika",
-    "AEFES|Candle.Engulfing.Bullish|4 Saat",
-    "TCELL|Candle.Engulfing.Bullish|4 Saat",
-    "PGSUS|Candle.ShootingStar|15 Dakika",
-    "TTKOM|Candle.ShootingStar|5 Dakika",
-    "KRDMD|Candle.Harami.Bullish|15 Dakika",
-    "TOASO|Candle.InvertedHammer|Günlük",
-    "PGSUS|Candle.InvertedHammer|5 Dakika",
-    "EKGYO|Candle.Engulfing.Bearish|1 Saat"
+    "ENKAI|Candle.Engulfing.Bullish|Günlük",
+    "SAHOL|Candle.Engulfing.Bearish|5 Dakika",
+    "TOASO|Candle.Engulfing.Bearish|5 Dakika",
+    "ASTOR|Candle.HangingMan|Haftalık"
   ]
 }
