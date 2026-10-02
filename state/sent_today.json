@@ -3,7 +3,10 @@
   "sent": [
     "ENKAI|Candle.Engulfing.Bullish|Günlük",
     "SAHOL|Candle.Engulfing.Bearish|5 Dakika",
+    "TUPRS|Candle.Harami.Bullish|1 Saat",
+    "TTKOM|Candle.Harami.Bullish|1 Saat",
     "TOASO|Candle.Engulfing.Bearish|5 Dakika",
+    "TOASO|Candle.Hammer|4 Saat",
     "ASTOR|Candle.HangingMan|Haftalık"
   ]
 }
