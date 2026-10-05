@@ -1,12 +1,11 @@
 {
-  "date": "2026-10-02",
+  "date": "2026-10-05",
   "sent": [
-    "ENKAI|Candle.Engulfing.Bullish|Günlük",
-    "SAHOL|Candle.Engulfing.Bearish|5 Dakika",
-    "TUPRS|Candle.Harami.Bullish|1 Saat",
-    "TTKOM|Candle.Harami.Bullish|1 Saat",
-    "TOASO|Candle.Engulfing.Bearish|5 Dakika",
-    "TOASO|Candle.Hammer|4 Saat",
-    "ASTOR|Candle.HangingMan|Haftalık"
+    "PETKM|Candle.Harami.Bullish|Haftalık",
+    "AEFES|Candle.Hammer|4 Saat",
+    "EREGL|Candle.Engulfing.Bearish|4 Saat",
+    "AKBNK|Candle.Harami.Bullish|Haftalık",
+    "PGSUS|Candle.Harami.Bullish|Haftalık",
+    "TOASO|Candle.Harami.Bullish|Haftalık"
   ]
 }
