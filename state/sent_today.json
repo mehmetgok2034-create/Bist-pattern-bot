@@ -1,11 +1,13 @@
 {
-  "date": "2026-10-05",
+  "date": "2026-10-06",
   "sent": [
     "PETKM|Candle.Harami.Bullish|Haftalık",
-    "AEFES|Candle.Hammer|4 Saat",
-    "EREGL|Candle.Engulfing.Bearish|4 Saat",
+    "ISCTR|Candle.Engulfing.Bullish|4 Saat",
+    "TUPRS|Candle.ShootingStar|Haftalık",
+    "KRDMD|Candle.HangingMan|5 Dakika",
     "AKBNK|Candle.Harami.Bullish|Haftalık",
-    "PGSUS|Candle.Harami.Bullish|Haftalık",
+    "THYAO|Candle.Engulfing.Bearish|1 Saat",
+    "KRDMD|Candle.Hammer|15 Dakika",
     "TOASO|Candle.Harami.Bullish|Haftalık"
   ]
 }
