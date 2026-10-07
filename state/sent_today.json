@@ -3,15 +3,16 @@
   "sent": [
     "AEFES|Candle.Engulfing.Bullish|5 Dakika",
     "AKBNK|Candle.Hammer|15 Dakika",
-    "VAKBN|Candle.Engulfing.Bullish|1 Saat",
-    "TOASO|Candle.InvertedHammer|Haftalık",
-    "ENKAI|Candle.Hammer|15 Dakika",
     "SASA|Candle.Hammer|4 Saat",
     "EKGYO|Candle.InvertedHammer|Haftalık",
-    "TTKOM|Candle.Hammer|15 Dakika",
+    "TOASO|Candle.Harami.Bullish|Haftalık",
+    "ENKAI|Candle.Hammer|15 Dakika",
     "EREGL|Candle.Hammer|15 Dakika",
-    "TTKOM|Candle.Harami.Bullish|5 Dakika",
     "PETKM|Candle.Harami.Bullish|Haftalık",
-    "TOASO|Candle.Harami.Bullish|Haftalık"
+    "VAKBN|Candle.Engulfing.Bullish|1 Saat",
+    "TTKOM|Candle.Hammer|15 Dakika",
+    "TTKOM|Candle.Harami.Bullish|5 Dakika",
+    "TOASO|Candle.Harami.Bullish|15 Dakika",
+    "TOASO|Candle.InvertedHammer|Haftalık"
   ]
 }
