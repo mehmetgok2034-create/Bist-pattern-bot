@@ -1,12 +1,13 @@
 {
   "date": "2026-10-08",
   "sent": [
-    "ASTOR|Candle.Engulfing.Bearish|5 Dakika",
-    "ISCTR|Candle.Engulfing.Bearish|5 Dakika",
     "TOASO|Candle.Harami.Bullish|Haftalık",
+    "ASTOR|Candle.Engulfing.Bearish|5 Dakika",
     "SAHOL|Candle.Engulfing.Bearish|5 Dakika",
+    "PETKM|Candle.Harami.Bullish|Haftalık",
     "GARAN|Candle.Engulfing.Bearish|5 Dakika",
-    "YKBNK|Candle.InvertedHammer|Haftalık",
-    "PETKM|Candle.Harami.Bullish|Haftalık"
+    "TCELL|Candle.ShootingStar|4 Saat",
+    "ISCTR|Candle.Engulfing.Bearish|5 Dakika",
+    "YKBNK|Candle.InvertedHammer|Haftalık"
   ]
 }
