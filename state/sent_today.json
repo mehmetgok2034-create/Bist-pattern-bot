@@ -1,12 +1,13 @@
 {
   "date": "2026-10-13",
   "sent": [
-    "EKGYO|Candle.Engulfing.Bullish|5 Dakika",
     "ASTOR|Candle.Harami.Bullish|5 Dakika",
-    "TUPRS|Candle.Engulfing.Bearish|1 Saat",
-    "GUBRF|Candle.Harami.Bullish|5 Dakika",
     "TTKOM|Candle.ShootingStar|15 Dakika",
+    "EKGYO|Candle.Engulfing.Bullish|5 Dakika",
+    "TUPRS|Candle.Engulfing.Bearish|1 Saat",
     "EKGYO|Candle.HangingMan|4 Saat",
-    "EKGYO|Candle.Hammer|1 Saat"
+    "GUBRF|Candle.Hammer|4 Saat",
+    "EKGYO|Candle.Hammer|1 Saat",
+    "GUBRF|Candle.Harami.Bullish|5 Dakika"
   ]
 }
