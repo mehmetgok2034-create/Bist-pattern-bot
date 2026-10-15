@@ -1,10 +1,16 @@
 {
   "date": "2026-10-15",
   "sent": [
-    "PETKM|Candle.Hammer|15 Dakika",
+    "MGROS|Candle.InvertedHammer|4 Saat",
+    "KRDMD|Candle.Engulfing.Bullish|4 Saat",
     "PETKM|Candle.Hammer|1 Saat",
+    "KCHOL|Candle.Hammer|5 Dakika",
+    "PETKM|Candle.Hammer|15 Dakika",
+    "KCHOL|Candle.Harami.Bullish|4 Saat",
     "VAKBN|Candle.Hammer|5 Dakika",
+    "TUPRS|Candle.Engulfing.Bullish|4 Saat",
+    "BIMAS|Candle.Harami.Bullish|15 Dakika",
     "TCELL|Candle.Harami.Bullish|5 Dakika",
-    "KCHOL|Candle.Hammer|5 Dakika"
+    "TOASO|Candle.Harami.Bullish|15 Dakika"
   ]
 }
