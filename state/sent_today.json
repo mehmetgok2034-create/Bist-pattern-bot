@@ -2,11 +2,12 @@
   "date": "2026-10-16",
   "sent": [
     "PGSUS|Candle.Engulfing.Bullish|1 Saat",
-    "GUBRF|Candle.Engulfing.Bullish|15 Dakika",
-    "VAKBN|Candle.Harami.Bullish|15 Dakika",
-    "EKGYO|Candle.Engulfing.Bullish|15 Dakika",
+    "AEFES|Candle.HangingMan|5 Dakika",
+    "THYAO|Candle.Hammer|4 Saat",
     "AEFES|Candle.Hammer|15 Dakika",
     "SISE|Candle.Engulfing.Bullish|15 Dakika",
-    "AEFES|Candle.HangingMan|5 Dakika"
+    "GUBRF|Candle.Engulfing.Bullish|15 Dakika",
+    "VAKBN|Candle.Harami.Bullish|15 Dakika",
+    "EKGYO|Candle.Engulfing.Bullish|15 Dakika"
   ]
 }
