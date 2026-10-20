@@ -1,26 +1,12 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "sent": [
-    "MGROS|Candle.Harami.Bullish|Haftalık",
-    "MGROS|Candle.ShootingStar|5 Dakika",
-    "EREGL|Candle.Engulfing.Bullish|1 Saat",
-    "MGROS|Candle.Engulfing.Bullish|1 Saat",
-    "GUBRF|Candle.Harami.Bullish|5 Dakika",
-    "KCHOL|Candle.Engulfing.Bullish|4 Saat",
-    "KRDMD|Candle.Engulfing.Bullish|5 Dakika",
-    "TTKOM|Candle.Engulfing.Bullish|5 Dakika",
-    "THYAO|Candle.Engulfing.Bullish|1 Saat",
-    "FROTO|Candle.InvertedHammer|15 Dakika",
-    "MGROS|Candle.Harami.Bullish|Günlük",
-    "EKGYO|Candle.Hammer|15 Dakika",
-    "GUBRF|Candle.InvertedHammer|5 Dakika",
-    "EREGL|Candle.Engulfing.Bullish|15 Dakika",
-    "KCHOL|Candle.Hammer|Günlük",
-    "SASA|Candle.Hammer|4 Saat",
-    "FROTO|Candle.Engulfing.Bullish|1 Saat",
-    "ISCTR|Candle.Engulfing.Bullish|1 Saat",
-    "SISE|Candle.Engulfing.Bullish|1 Saat",
-    "TOASO|Candle.Engulfing.Bullish|15 Dakika",
-    "KCHOL|Candle.HangingMan|Haftalık"
+    "ASELS|Candle.HangingMan|5 Dakika",
+    "TTKOM|Candle.Engulfing.Bullish|4 Saat",
+    "THYAO|Candle.Hammer|1 Saat",
+    "THYAO|Candle.Hammer|15 Dakika",
+    "VAKBN|Candle.Harami.Bullish|4 Saat",
+    "TCELL|Candle.Hammer|1 Saat",
+    "TCELL|Candle.HangingMan|15 Dakika"
   ]
 }
