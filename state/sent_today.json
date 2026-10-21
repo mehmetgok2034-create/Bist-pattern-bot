@@ -1,9 +1,11 @@
 {
   "date": "2026-10-21",
   "sent": [
-    "KRDMD|Candle.ShootingStar|1 Saat",
-    "GARAN|Candle.Engulfing.Bearish|4 Saat",
     "GARAN|Candle.ShootingStar|Günlük",
-    "GARAN|Candle.ShootingStar|1 Saat"
+    "GARAN|Candle.ShootingStar|1 Saat",
+    "EKGYO|Candle.Harami.Bullish|1 Saat",
+    "YKBNK|Candle.HangingMan|4 Saat",
+    "KRDMD|Candle.ShootingStar|1 Saat",
+    "GARAN|Candle.Engulfing.Bearish|4 Saat"
   ]
 }
