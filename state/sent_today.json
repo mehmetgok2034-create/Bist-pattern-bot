@@ -1,12 +1,9 @@
 {
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "sent": [
-    "VAKBN|Candle.Harami.Bullish|4 Saat",
-    "ASELS|Candle.HangingMan|5 Dakika",
-    "THYAO|Candle.Hammer|1 Saat",
-    "TCELL|Candle.HangingMan|15 Dakika",
-    "TCELL|Candle.Hammer|1 Saat",
-    "TTKOM|Candle.Engulfing.Bullish|4 Saat",
-    "THYAO|Candle.Hammer|15 Dakika"
+    "KRDMD|Candle.ShootingStar|1 Saat",
+    "GARAN|Candle.Engulfing.Bearish|4 Saat",
+    "GARAN|Candle.ShootingStar|Günlük",
+    "GARAN|Candle.ShootingStar|1 Saat"
   ]
 }
