@@ -1,13 +1,17 @@
 {
   "date": "2026-10-22",
   "sent": [
-    "ASTOR|Candle.Hammer|5 Dakika",
-    "MGROS|Candle.Hammer|15 Dakika",
     "ASTOR|Candle.Hammer|15 Dakika",
+    "ASTOR|Candle.Hammer|5 Dakika",
+    "PETKM|Candle.Hammer|15 Dakika",
+    "SAHOL|Candle.Harami.Bullish|5 Dakika",
+    "TCELL|Candle.Harami.Bullish|15 Dakika",
+    "VAKBN|Candle.Harami.Bullish|5 Dakika",
+    "MGROS|Candle.Hammer|15 Dakika",
+    "SASA|Candle.InvertedHammer|Günlük",
     "EKGYO|Candle.Hammer|15 Dakika",
     "BIMAS|Candle.Hammer|1 Saat",
-    "VAKBN|Candle.Harami.Bullish|5 Dakika",
-    "PETKM|Candle.Hammer|15 Dakika",
-    "SAHOL|Candle.Harami.Bullish|5 Dakika"
+    "ASTOR|Candle.Harami.Bullish|1 Saat",
+    "ASTOR|Candle.Harami.Bullish|15 Dakika"
   ]
 }
