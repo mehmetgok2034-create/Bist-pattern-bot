@@ -1,11 +1,13 @@
 {
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "sent": [
-    "GARAN|Candle.ShootingStar|Günlük",
-    "GARAN|Candle.ShootingStar|1 Saat",
-    "EKGYO|Candle.Harami.Bullish|1 Saat",
-    "YKBNK|Candle.HangingMan|4 Saat",
-    "KRDMD|Candle.ShootingStar|1 Saat",
-    "GARAN|Candle.Engulfing.Bearish|4 Saat"
+    "ASTOR|Candle.Hammer|5 Dakika",
+    "MGROS|Candle.Hammer|15 Dakika",
+    "ASTOR|Candle.Hammer|15 Dakika",
+    "EKGYO|Candle.Hammer|15 Dakika",
+    "BIMAS|Candle.Hammer|1 Saat",
+    "VAKBN|Candle.Harami.Bullish|5 Dakika",
+    "PETKM|Candle.Hammer|15 Dakika",
+    "SAHOL|Candle.Harami.Bullish|5 Dakika"
   ]
 }
