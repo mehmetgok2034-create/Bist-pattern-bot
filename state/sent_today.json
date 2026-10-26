@@ -1,10 +1,11 @@
 {
   "date": "2026-10-26",
   "sent": [
-    "TTKOM|Candle.Engulfing.Bullish|1 Saat",
-    "GUBRF|Candle.InvertedHammer|Haftalık",
-    "GUBRF|Candle.InvertedHammer|Günlük",
+    "GUBRF|Candle.Harami.Bullish|15 Dakika",
     "SASA|Candle.Hammer|4 Saat",
-    "THYAO|Candle.InvertedHammer|1 Saat"
+    "THYAO|Candle.InvertedHammer|1 Saat",
+    "GUBRF|Candle.InvertedHammer|Günlük",
+    "GUBRF|Candle.InvertedHammer|Haftalık",
+    "TTKOM|Candle.Engulfing.Bullish|1 Saat"
   ]
 }
