@@ -1,17 +1,24 @@
 {
   "date": "2026-10-27",
   "sent": [
-    "MGROS|Candle.Engulfing.Bearish|15 Dakika",
-    "TOASO|Candle.ShootingStar|5 Dakika",
-    "EKGYO|Candle.Engulfing.Bullish|Günlük",
+    "ISCTR|Candle.Hammer|4 Saat",
+    "TUPRS|Candle.Hammer|4 Saat",
     "MGROS|Candle.Engulfing.Bearish|5 Dakika",
-    "TOASO|Candle.Engulfing.Bullish|Günlük",
-    "KCHOL|Candle.Engulfing.Bullish|4 Saat",
-    "EREGL|Candle.Engulfing.Bullish|Günlük",
-    "GUBRF|Candle.InvertedHammer|Haftalık",
+    "VAKBN|Candle.Hammer|4 Saat",
     "ASELS|Candle.Engulfing.Bullish|Günlük",
-    "BIMAS|Candle.Engulfing.Bullish|4 Saat",
     "TAVHL|Candle.Engulfing.Bullish|4 Saat",
-    "ENKAI|Candle.ShootingStar|5 Dakika"
+    "TOASO|Candle.Engulfing.Bullish|Günlük",
+    "MGROS|Candle.Harami.Bullish|1 Saat",
+    "EKGYO|Candle.Engulfing.Bullish|Günlük",
+    "TCELL|Candle.Hammer|Haftalık",
+    "ENKAI|Candle.ShootingStar|5 Dakika",
+    "BIMAS|Candle.Engulfing.Bullish|4 Saat",
+    "GARAN|Candle.Hammer|4 Saat",
+    "GUBRF|Candle.InvertedHammer|Haftalık",
+    "EREGL|Candle.Engulfing.Bullish|Günlük",
+    "TTKOM|Candle.Hammer|4 Saat",
+    "KCHOL|Candle.Engulfing.Bullish|4 Saat",
+    "MGROS|Candle.Engulfing.Bearish|15 Dakika",
+    "TOASO|Candle.ShootingStar|5 Dakika"
   ]
 }
