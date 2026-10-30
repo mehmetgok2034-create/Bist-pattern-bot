@@ -1,6 +1,14 @@
 {
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "sent": [
-    "MGROS|Candle.Engulfing.Bullish|4 Saat"
+    "MGROS|Candle.Hammer|1 Saat",
+    "AKBNK|Candle.Hammer|1 Saat",
+    "EKGYO|Candle.Hammer|15 Dakika",
+    "ASELS|Candle.ShootingStar|5 Dakika",
+    "ASELS|Candle.Hammer|Günlük",
+    "TAVHL|Candle.Engulfing.Bearish|5 Dakika",
+    "VAKBN|Candle.Hammer|15 Dakika",
+    "ASTOR|Candle.InvertedHammer|Haftalık",
+    "SISE|Candle.Hammer|15 Dakika"
   ]
 }
